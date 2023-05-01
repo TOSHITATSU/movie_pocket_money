@@ -1,19 +1,28 @@
-MVCアーキテクチャを使わない場合、ディレクトリ設計はシンプルになります。以下のような構成が考えられます。
+MVCアーキテクチャを不採用、理由ディレクトリ設計はシンプルになる。以下のような構成予定。
+【フローチャート】
 
-arduino
-Copy code
+ユーザー登録・ログイン機能
+サブスクリプションサービスの選択と追加
+お小遣い金額の設定
+サブスクリプション料金の差し引き
+残金からレンタル可能な映画本数の自動表示
+
 movie-pocket-money-manager/
     ├── public/
     │   ├── css/
     │   ├── js/
     │   ├── register.php
     │   ├── login.php
+    │   ├── logout.php
     │   ├── subscriptions.php
     │   ├── add_subscription.php
     │   ├── pocket_money.php
     │   ├── edit_pocket_money.php
+    │   ├── delete_subscription.php
+    │   ├── rental_calculator.php
     │   └── index.php
     ├── includes/
+    ｜   ├── rental-function.php
     │   ├── database.php
     │   ├── auth-functions.php
     │   ├── subscription-functions.php
@@ -43,3 +52,26 @@ config/ - 設定ファイルが配置されます。
 
 database.php - データベース接続情報
 MVCアーキテクチャを使わない場合、コードの再利用性や保守性が低くなることがあります。そのため、大規模なプロジェクトやチームでの開発には不向きな場合がありますが、小規模なアプリケーションや個人での開発には適している場合があります。
+
+【データベースの詳細設計】
+
+データベース名: movie_pocket_money
+
+usersテーブル
+id: INT, AUTO_INCREMENT, PRIMARY KEY
+name: VARCHAR(255), NOT NULL
+email: VARCHAR(255), NOT NULL, UNIQUE
+password: VARCHAR(255), NOT NULL
+pocket_money: DECIMAL(10,2), DEFAULT 0.00, NOT NULL
+created_at: TIMESTAMP, NOT NULL
+updated_at: TIMESTAMP, NOT NULL
+
+subscriptionsテーブル
+id: INT, AUTO_INCREMENT, PRIMARY KEY
+user_id: INT, FOREIGN KEY, NOT NULL
+name: VARCHAR(255), NOT NULL
+amount: DECIMAL(10,2), NOT NULL
+created_at: TIMESTAMP, NOT NULL
+updated_at: TIMESTAMP, NOT NULL
+
+上記の設計をもとに、PHPとMAMPを使ってお小遣い管理アプリケーションを実装していく。
