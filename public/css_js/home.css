@@ -1,0 +1,182 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.video-background video {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+h1 {
+  display: inline-flex; /* flexからinline-flexに変更 */
+  align-items: center;
+  position: relative;
+  padding: 1.1em 0.5em 1.1em 0.5em; /* 横のパディングを調整 */
+  background-color: #000000;
+  color: #fff;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+h1::before {
+  position: absolute;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: 65%;
+  border-top: 10px dashed #fff;
+  border-bottom: 10px dashed #fff;
+  content: '';
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+p {
+  color: #333;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  color: #007bff;
+  transform: translateY(-5px);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.btn02 {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 350px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.btn02 span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #333;
+  transition: 0.5s;
+  box-sizing: border-box;
+  padding: 0 10px;
+  line-height: 60px;
+}
+
+.rotateback span:nth-child(1) {
+  background: #fff;
+  color: #000;
+  transform: rotateX(0deg);
+  transform-origin: 0 50% -30px;
+}
+
+.rotateback:hover span:nth-child(1) {
+  transform: rotateX(90deg);
+}
+
+.rotateback span:nth-child(2) {
+  background: #000;
+  color: #fff;
+  transform: rotateX(-90deg);
+  transform-origin: 0 50% -30px;
+}
+
+.rotateback:hover span:nth-child(2) {
+  transform: rotateX(0deg);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-item {
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #007bff;
+  transform: translateY(-5px);
+}
+
+/* Add this media query to your CSS */
+@media (hover: none) {
+  .nav-link:active {
+    color: #007bff;
+    transform: translateY(-5px);
+  }
+
+  .rotateback:active span:nth-child(1) {
+    transform: rotateX(90deg);
+  }
+
+  .rotateback:active span:nth-child(2) {
+    transform: rotateX(0deg);
+  }
+}
