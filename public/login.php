@@ -3,7 +3,7 @@ session_start();
 require_once '../includes/auth-functions.php';
 
 if (isLoggedIn()) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     if (loginUser($email, $password)) {
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit;
     } else {
         $errorMessage = 'ログインに失敗しました。';
@@ -40,6 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="col-md-6">
         <h1 class="text-center mt-5">ムービーポケットマネージャー</h1>
         <p class="text-center">ログインフォーム</p>
+
+        <?php if (isset($_SESSION['registration_success'])): ?>
+          <div class="alert alert-success">会員登録しました</div>
+          <?php unset($_SESSION['registration_success']); ?>
+        <?php endif; ?>
 
         <?php if (isset($errorMessage)): ?>
             <div class="alert alert-danger"><?= $errorMessage ?></div>

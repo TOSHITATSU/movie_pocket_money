@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         <p class="mt-3">現在の月額お小遣い: <?= htmlspecialchars($currentPocketMoney) ?>円</p>
         <p><a href="pocket_money.php" class="btn btn-secondary">お小遣い情報ページへ戻る</a></p>
-        <p><a href="index.php" class="btn btn-secondary">ホームページへ戻る</a></p>
+        <p><a href="../index.php" class="btn btn-secondary">ホームページへ戻る</a></p>
       </div>
     </div>
   </div>

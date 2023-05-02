@@ -57,7 +57,7 @@ $totalAmount = getTotalAmount($_SESSION['user_id']);
                 <p>サブスク合計金額: <?= htmlspecialchars($totalAmount ?? '0') ?>円</p>
                 <p><a href="add_subscription.php" class="btn btn-primary">サブスクリプション追加</a></p>
                 <p><a href="pocket_money.php" class="btn btn-info">お小遣い情報ページへ</a></p>
-                <p><a href="index.php" class="btn btn-secondary">ホームへ戻る</a></p>
+                <p><a href="../index.php" class="btn btn-secondary">ホームへ戻る</a></p>
             </div>
         </div>
     </div>

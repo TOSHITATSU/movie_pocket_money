@@ -35,7 +35,7 @@ $remainingAmount = $pocketMoney - $totalAmount;
         <p><a href="edit_pocket_money.php" class="btn btn-primary">お小遣いを編集する</a></p>
         <p><a href="rental_calculator.php" class="btn btn-primary">レンタル計算を表示する</a></p>
         <p><a href="subscriptions.php" class="btn btn-primary">サブスクリプション一覧に戻る</a></p>
-        <p><a href="index.php" class="btn btn-primary">ホームに戻る</a></p>
+        <p><a href="../index.php" class="btn btn-primary">ホームに戻る</a></p>
       </div>
     </div>
   </div>

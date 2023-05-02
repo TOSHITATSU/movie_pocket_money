@@ -60,7 +60,7 @@ $rentalResults = calculateRentals($remainingAmount);
         </div>
         <p><a href="subscriptions.php" class="btn btn-secondary">サブスクリプション一覧に戻る</a></p>
         <p><a href="pocket_money.php" class="btn btn-secondary">お小遣い情報に戻る</a></p>
-        <p><a href="index.php" class="btn btn-secondary">ホームに戻る</a></p>
+        <p><a href="../index.php" class="btn btn-secondary">ホームに戻る</a></p>
       </div>
     </div>
   </div>

@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else {
     try {
     registerUser($name, $email, $password);
+    $_SESSION['registration_success'] = true;
     header('Location: login.php');
     exit;
     } catch (PDOException $e) {
