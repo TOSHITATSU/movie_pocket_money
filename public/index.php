@@ -28,8 +28,8 @@ $username = getUserName($_SESSION['user_id']);
   <div class="container text-center">
     <h1 class="mt-5">ムービーポケットマネージャー</h1>
     <p>ようこそ<?php echo htmlspecialchars($username ?? ''); ?>さん</p>
-    <p>ここは映画のために使えるお小遣いを設定し、
-      <br>破産しないようにするアプリ
+    <p>ここは映画マニアのお財布を救世主となるアプリ！
+      <br>お小遣いを上手に使って、映画を楽しみつつ、破産の悲劇からあなたを守ります！
     </p>
     <nav class="mt-4">
       <ul class="nav justify-content-center">
