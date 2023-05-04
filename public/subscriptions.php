@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
     exit;
 }
 
-$subscriptions = getSubscriptionList();
+$subscriptions = getSubscriptionList($_SESSION['user_id']);
 $totalAmount = getTotalAmount($_SESSION['user_id']);
 
 ?>

@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 session_start();
 require_once '../includes/auth-functions.php';
 require_once '../includes/subscription-functions.php';
@@ -25,7 +27,7 @@ $subscriptionOptions = [
 
 // 提供されているサブスクリプションの選択肢と価格が含まれる$subscriptionOptions配列をループし、チェックボックスとラベルを生成します。フォームが送信された場合は、選択されたサブスクリプションのリストを取得して、データベースにサブスクリプションを追加します。追加に成功した場合は、サブスクリプション一覧ページにリダイレクトします。
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $selectedSubscriptions = json_decode($_POST['subscriptions'], true);
+  $selectedSubscriptions = $_POST['subscriptions'];
 
   foreach ($selectedSubscriptions as $subscription) {
     list($subscriptionName, $amount) = explode(':', $subscription);
@@ -64,14 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>サブスクリプション名:</div>
         <?php foreach ($subscriptionOptions as $name => $price) : ?>
           <div class="form-check form-check-inline mb-3">
-            <input class="form-check-input" type="checkbox" value="<?=htmlspecialchars($name) ?>: <?= htmlspecialchars($price) ?>" id="<?= htmlspecialchars($name) ?>-<?= htmlspecialchars($price) ?>">
-            <label class="form-check-label mx-2" for="<?= htmlspecialchars($name) ?>-<?= htmlspecialchars($price) ?>">
-              <?= htmlspecialchars($name) ?> (<?= htmlspecialchars($price) ?>円)
-            </label>
+            <input class="form-check-input" type="checkbox" name="subscriptions[]" value="<?=htmlspecialchars($name) ?>: <?= htmlspecialchars($price) ?>" id="<?= htmlspecialchars($name) ?>-<?= htmlspecialchars($price) ?>">
+            <label class="form-check-label" for="<?= htmlspecialchars($name) ?>-<?= htmlspecialchars($price) ?>"><?= htmlspecialchars($name) ?> (<?= htmlspecialchars($price) ?>円)</label>
           </div>
         <?php endforeach; ?>
         <br>
-        <input type="hidden" name="subscriptions" id="subscriptions">
         <input type="submit" value="追加" class="btn btn-primary">
       </form>
       <p><a href="subscriptions.php" class="btn btn-secondary mt-3">サブスクリプション一覧に戻る</a></p>
@@ -79,12 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div>
 
-<script src="./css_js/add_subscription.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-

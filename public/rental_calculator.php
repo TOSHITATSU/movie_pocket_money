@@ -12,7 +12,7 @@ if (!$userId) {
   exit;
 }
 
-$remainingAmount = getPocketMoney($userId) - getTotalAmount($userId);
+$remainingAmount = getPocketMoney($_SESSION['user_id']) - getTotalAmount($_SESSION['user_id']);
 $rentalResults = calculateRentals($remainingAmount);
 ?>
 

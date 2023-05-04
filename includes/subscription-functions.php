@@ -1,12 +1,12 @@
 <?php
 require_once 'database.php';
 // データベースから、ログインしているユーザーのサブスクリプションの一覧を取得する関数
-function getSubscriptionList() {
+function getSubscriptionList($userId) {
   $pdo = connectDB();
 
   // Change this line
   $stmt = $pdo->prepare('SELECT * FROM subscriptions WHERE user_id = :user_id');
-  $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+  $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
   $stmt->execute();
   
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ function addSubscription($userId, $name, $amount) {
   $stmt = $pdo->prepare('INSERT INTO subscriptions (user_id, name, amount, created_at, updated_at) VALUES (:user_id, :name, :amount, NOW(), NOW())');
   $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
   $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-  $stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
+  $stmt->bindParam(':amount', $amount, PDO::PARAM_INT); // 修正後
   
   return $stmt->execute();
 }
@@ -41,10 +41,8 @@ function deleteSubscription($subscriptionId, $userId) {
 // データベースから、ログインしているユーザーのサブスクリプションの総金額を取得する関数
 function getTotalAmount($userId) {
   $pdo = connectDB();
-  
   $stmt = $pdo->prepare('SELECT SUM(amount) as total_amount FROM subscriptions WHERE user_id = :user_id');
-  $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+  $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
   $stmt->execute();
-  
   return $stmt->fetchColumn();
 }
